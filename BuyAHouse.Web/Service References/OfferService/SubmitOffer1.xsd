@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://buyahouse.com/contracts" elementFormDefault="qualified" targetNamespace="http://buyahouse.com/contracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:55501/SubmitOffer.xamlx?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="SubmitOfferRequest">
+    <xs:sequence>
+      <xs:element name="Offer" nillable="true" type="tns:Offer" />
+      <xs:element name="RequestId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SubmitOfferRequest" nillable="true" type="tns:SubmitOfferRequest" />
+  <xs:complexType name="Offer">
+    <xs:sequence>
+      <xs:element name="Amount" type="xs:decimal" />
+      <xs:element name="BuyerName" nillable="true" type="xs:string" />
+      <xs:element name="EmailAddress" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Offer" nillable="true" type="tns:Offer" />
+  <xs:complexType name="SubmitOfferResponse">
+    <xs:sequence>
+      <xs:element name="BuyerName" nillable="true" type="xs:string" />
+      <xs:element name="OfferId" type="xs:int" />
+      <xs:element name="ResponseText" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SubmitOfferResponse" nillable="true" type="tns:SubmitOfferResponse" />
+  <xs:complexType name="SellerAcceptanceResult">
+    <xs:sequence>
+      <xs:element name="Accept" type="xs:boolean" />
+      <xs:element name="OfferId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SellerAcceptanceResult" nillable="true" type="tns:SellerAcceptanceResult" />
+</xs:schema>

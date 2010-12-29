@@ -1,0 +1,45 @@
+<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<%@ Import Namespace="BuyAHouse.Helpers" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <link rel="Stylesheet" href="/Content/Site.css" />
+    <script language="javascript" type="text/javascript" src="/Scripts/jquery-1.4.1.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/Scripts/jquery.validate.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+</head>
+<body>
+    <div class="page">
+        <div id="header">
+            <div id="title">
+                <h1>
+                    <%--BuyAHome--%>
+                    <img src="/Content/logo.png" />
+                </h1>
+            </div>
+            <div id="logindisplay">
+                <%--<% Html.RenderPartial("LogonUserControl"); %>--%>
+                Login goes here, yo
+            </div>
+            <div id="menucontainer">
+                <%-- The custom Html.MenuItem() helper is used to render each menu link --%>
+                <ul id="menu">
+                    <%= Html.MenuItem("Make an Offer", "Index", "Offers")%>
+                </ul>
+            </div>
+        </div>
+        <div id="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            <div id="footer">
+                BuyAHome &copy; Copyright 2010
+            </div>
+        </div>
+    </div>
+</body>
+</html>

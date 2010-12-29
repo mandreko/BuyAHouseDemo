@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://buyahouse.com/contracts/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://buyahouse.com/contracts/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://buyahouse.com/contracts/Imports">
+      <xsd:import schemaLocation="http://localhost:55501/SubmitOffer.xamlx?xsd=xsd1" namespace="http://buyahouse.com/contracts" />
+      <xsd:import schemaLocation="http://localhost:55501/SubmitOffer.xamlx?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService_SubmitOffer_InputMessage">
+    <wsdl:part xmlns:q1="http://buyahouse.com/contracts" name="SubmitOfferRequest" element="q1:SubmitOfferRequest" />
+  </wsdl:message>
+  <wsdl:message name="IService_SubmitOffer_OutputMessage">
+    <wsdl:part xmlns:q2="http://buyahouse.com/contracts" name="SubmitOfferResponse" element="q2:SubmitOfferResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SellerAcceptanceCompleted_InputMessage">
+    <wsdl:part xmlns:q3="http://buyahouse.com/contracts" name="SellerAcceptanceResult" element="q3:SellerAcceptanceResult" />
+  </wsdl:message>
+  <wsdl:message name="IService_SellerAcceptanceCompleted_OutputMessage">
+    <wsdl:part xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/" name="boolean" element="q4:boolean" />
+  </wsdl:message>
+  <wsdl:portType name="IService">
+    <wsdl:operation name="SubmitOffer">
+      <wsdl:input wsaw:Action="http://buyahouse.com/contracts/IService/SubmitOffer" message="tns:IService_SubmitOffer_InputMessage" />
+      <wsdl:output wsaw:Action="http://buyahouse.com/contracts/IService/SubmitOfferResponse" message="tns:IService_SubmitOffer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SellerAcceptanceCompleted">
+      <wsdl:input wsaw:Action="http://buyahouse.com/contracts/IService/SellerAcceptanceCompleted" message="tns:IService_SellerAcceptanceCompleted_InputMessage" />
+      <wsdl:output wsaw:Action="http://buyahouse.com/contracts/IService/SellerAcceptanceCompletedResponse" message="tns:IService_SellerAcceptanceCompleted_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

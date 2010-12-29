@@ -1,0 +1,119 @@
+﻿<WorkflowService mc:Ignorable="sap" ConfigurationName="SubmitOffer" sap:VirtualizedContainerService.HintSize="355,1506" Name="SubmitOffer" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel" xmlns:ba="clr-namespace:BuyAHouse.Activities;assembly=BuyAHouse.Activities" xmlns:bc="clr-namespace:BuyAHouse.Contracts;assembly=BuyAHouse.Contracts" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mv="clr-namespace:Microsoft.VisualBasic;assembly=System" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://buyahouse.com/contracts/" xmlns:p1="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:s1="clr-namespace:System;assembly=System" xmlns:s2="clr-namespace:System;assembly=System.Xml" xmlns:s3="clr-namespace:System;assembly=System.Core" xmlns:s4="clr-namespace:System;assembly=System.ServiceModel" xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities" xmlns:sad="clr-namespace:System.Activities.Debugger;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System" xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=System.ServiceModel" xmlns:scg2="clr-namespace:System.Collections.Generic;assembly=System.Core" xmlns:scg3="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sl="clr-namespace:System.Linq;assembly=System.Core" xmlns:ssa="clr-namespace:System.ServiceModel.Activities;assembly=System.ServiceModel.Activities" xmlns:ssx="clr-namespace:System.ServiceModel.XamlIntegration;assembly=System.ServiceModel" xmlns:st="clr-namespace:System.Text;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <sap:WorkflowViewStateService.ViewState>
+    <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
+      <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
+    </scg3:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <p1:Sequence DisplayName="Application Service" sad:XamlDebuggerXmlReader.FileName="c:\users\mandreko\documents\visual studio 2010\Projects\BuyAHouse\BuyAHouse\SubmitOffer.xamlx" sap:VirtualizedContainerService.HintSize="325,1476" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
+    <p1:Sequence.Variables>
+      <p1:Variable x:TypeArguments="CorrelationHandle" Name="handle" />
+      <p1:Variable x:TypeArguments="bc:SubmitOfferRequest" Name="OfferRequest" />
+      <p1:Variable x:TypeArguments="bc:SubmitOfferResponse" Name="OfferResponse" />
+      <p1:Variable x:TypeArguments="CorrelationHandle" Name="OfferIdHandle" />
+      <p1:Variable x:TypeArguments="x:Boolean" Default="False" Name="AcceptOffer" />
+    </p1:Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg3:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TransactedReceiveScope Request="{x:Reference __ReferenceID0}" DisplayName="Receive Offer" sap:VirtualizedContainerService.HintSize="303,483">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg3:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <p1:Sequence DisplayName="Save and Respond to Seller" sap:VirtualizedContainerService.HintSize="277,276">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ba:SaveOffer sap:VirtualizedContainerService.HintSize="255,22" OfferRequest="[OfferRequest]" Result="[OfferResponse]" />
+        <SendReply DisplayName="SendResponse" sap:VirtualizedContainerService.HintSize="255,90">
+          <SendReply.CorrelationInitializers>
+            <QueryCorrelationInitializer CorrelationHandle="[OfferIdHandle]">
+              <XPathMessageQuery x:Key="key1">
+                <XPathMessageQuery.Namespaces>
+                  <ssx:XPathMessageContextMarkup>
+                    <x:String x:Key="xg0">http://buyahouse.com/contracts</x:String>
+                  </ssx:XPathMessageContextMarkup>
+                </XPathMessageQuery.Namespaces>sm:body()/xg0:SubmitOfferResponse/xg0:OfferId</XPathMessageQuery>
+            </QueryCorrelationInitializer>
+          </SendReply.CorrelationInitializers>
+          <SendReply.Request>
+            <Receive x:Name="__ReferenceID0" CanCreateInstance="True" DisplayName="ReceiveRequest" sap:VirtualizedContainerService.HintSize="277,90" OperationName="SubmitOffer" ServiceContractName="p:IService">
+              <Receive.CorrelationInitializers>
+                <RequestReplyCorrelationInitializer CorrelationHandle="[handle]" />
+              </Receive.CorrelationInitializers>
+              <ReceiveMessageContent>
+                <p1:OutArgument x:TypeArguments="bc:SubmitOfferRequest">[OfferRequest]</p1:OutArgument>
+              </ReceiveMessageContent>
+            </Receive>
+          </SendReply.Request>
+          <SendMessageContent>
+            <p1:InArgument x:TypeArguments="bc:SubmitOfferResponse">[OfferResponse]</p1:InArgument>
+          </SendMessageContent>
+        </SendReply>
+      </p1:Sequence>
+    </TransactedReceiveScope>
+    <p1:Sequence DisplayName="Notify Owner" sap:VirtualizedContainerService.HintSize="303,146">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg3:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ba:NotifyOwner sap:VirtualizedContainerService.HintSize="200,22" OfferId="[OfferResponse.OfferId]" OfferRequest="[OfferRequest]" />
+    </p1:Sequence>
+    <TransactedReceiveScope Request="{x:Reference __ReferenceID1}" DisplayName="When Seller Acceptance Complete" sap:VirtualizedContainerService.HintSize="303,581">
+      <TransactedReceiveScope.Variables>
+        <p1:Variable x:TypeArguments="bc:SellerAcceptanceResult" Name="SellerAcceptance" />
+      </TransactedReceiveScope.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg3:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <p1:Sequence DisplayName="Update Offer Acceptance" sap:VirtualizedContainerService.HintSize="277,374">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <p1:Assign DisplayName="Assign AcceptOffer" sap:VirtualizedContainerService.HintSize="255,58">
+          <p1:Assign.To>
+            <p1:OutArgument x:TypeArguments="x:Boolean">[AcceptOffer]</p1:OutArgument>
+          </p1:Assign.To>
+          <p1:Assign.Value>
+            <p1:InArgument x:TypeArguments="x:Boolean">[SellerAcceptance.Accept]</p1:InArgument>
+          </p1:Assign.Value>
+        </p1:Assign>
+        <ba:UpdateApproved Approved="[AcceptOffer]" sap:VirtualizedContainerService.HintSize="255,22" OfferId="[OfferResponse.OfferId]" />
+        <SendReply DisplayName="Send Offer Acceptance Reply" sap:VirtualizedContainerService.HintSize="255,90">
+          <SendReply.Request>
+            <Receive x:Name="__ReferenceID1" CorrelatesWith="[OfferIdHandle]" sap:VirtualizedContainerService.HintSize="277,90" OperationName="SellerAcceptanceCompleted" ServiceContractName="p:IService">
+              <Receive.CorrelatesOn>
+                <XPathMessageQuery x:Key="key1">
+                  <XPathMessageQuery.Namespaces>
+                    <ssx:XPathMessageContextMarkup>
+                      <x:String x:Key="xg0">http://buyahouse.com/contracts</x:String>
+                    </ssx:XPathMessageContextMarkup>
+                  </XPathMessageQuery.Namespaces>sm:body()/xg0:SellerAcceptanceResult/xg0:OfferId</XPathMessageQuery>
+              </Receive.CorrelatesOn>
+              <ReceiveMessageContent>
+                <p1:OutArgument x:TypeArguments="bc:SellerAcceptanceResult">[SellerAcceptance]</p1:OutArgument>
+              </ReceiveMessageContent>
+            </Receive>
+          </SendReply.Request>
+          <SendMessageContent>
+            <p1:InArgument x:TypeArguments="x:Boolean">[True]</p1:InArgument>
+          </SendMessageContent>
+        </SendReply>
+      </p1:Sequence>
+    </TransactedReceiveScope>
+    <ba:NotifyBuyer Approve="[AcceptOffer]" sap:VirtualizedContainerService.HintSize="303,22" Offer="[OfferRequest.Offer]" />
+  </p1:Sequence>
+</WorkflowService>
