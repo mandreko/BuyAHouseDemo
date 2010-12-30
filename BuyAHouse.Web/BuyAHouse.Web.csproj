@@ -64,12 +64,14 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OfferController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\MenuItemHelper.cs" />
     <Compile Include="Models\OfferModel.cs" />
+    <Compile Include="Models\PropertyModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\OfferService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -93,6 +95,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Offer\Details.aspx" />
     <Content Include="Views\Offer\Index.aspx" />
     <Content Include="Views\Offer\Thanks.aspx" />
@@ -130,6 +133,9 @@
     <Content Include="Views\Shared\Site.Master" />
     <None Include="Service References\OfferService\SubmitOffer1.wsdl" />
     <None Include="Service References\OfferService\SubmitOffer1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OfferService\SubmitOffer2.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

@@ -16,23 +16,28 @@ namespace BuyAHouse.Activities
                 var request = OfferRequest.Get(context);
                 var offer = new Data.Offer
                                 {
+                                    PropertyId = request.Offer.PropertyId,
                                     Amount = request.Offer.Amount,
                                     BuyerName = request.Offer.BuyerName,
                                     EmailAddress = request.Offer.EmailAddress,
                                     RequestId = request.RequestId,
-
                                 };
 
                 ctx.Offers.AddObject(offer);
 
                 ctx.SaveChanges();
 
-                return new SubmitOfferResponse
+                ctx.Connection.Close();
+
+                var r =  new SubmitOfferResponse
                            {
+                               PropertyId = request.Offer.PropertyId,
                                BuyerName = request.Offer.BuyerName,
                                OfferId = offer.OfferId,
                                ResponseText = string.Format(ServiceResources.OfferProcessing, request.Offer.BuyerName, offer.OfferId),
                            };
+
+                return r;
             }
         }
     }

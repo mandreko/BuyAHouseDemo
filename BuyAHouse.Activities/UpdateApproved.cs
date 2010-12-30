@@ -17,7 +17,7 @@ namespace BuyAHouse.Activities
                 int offerId = OfferId.Get(context);
 
                 var offer = ctx.Offers.Single(o => o.OfferId == offerId);
-                offer.Approved = result;
+                offer.Accepted = result;
 
                 ctx.SaveChanges();
             }

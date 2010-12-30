@@ -10,6 +10,12 @@ namespace BuyAHouse.Contracts
         public Guid RequestId { get; set; }
 
         [DataMember(IsRequired = true)]
+        public int PropertyId { get; set; }
+
+        [DataMember(IsRequired = true)]
         public Offer Offer { get; set; }
+        
+        [DataMember(IsRequired = true)]
+        public OfferAcceptanceResult Result { get; set; }
     }
 }

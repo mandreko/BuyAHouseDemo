@@ -22,10 +22,11 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="SubmitOffer.disco" MetadataType="Disco" ID="3c5b51b3-6787-4662-b617-dda183e048d3" SourceId="1" SourceUrl="http://localhost:55501/SubmitOffer.xamlx?disco" />
-    <MetadataFile FileName="SubmitOffer1.xsd" MetadataType="Schema" ID="1c63294f-8e59-4950-b0fd-4f920a9493de" SourceId="1" SourceUrl="http://localhost:55501/SubmitOffer.xamlx?xsd=xsd1" />
     <MetadataFile FileName="SubmitOffer.xsd" MetadataType="Schema" ID="f5fa6e44-7fe8-49aa-a707-e14dc8323be4" SourceId="1" SourceUrl="http://localhost:55501/SubmitOffer.xamlx?xsd=xsd0" />
-    <MetadataFile FileName="SubmitOffer.wsdl" MetadataType="Wsdl" ID="72e3e55e-1105-4ba1-bf7d-23db5599ec28" SourceId="1" SourceUrl="http://localhost:55501/SubmitOffer.xamlx?wsdl" />
     <MetadataFile FileName="SubmitOffer1.wsdl" MetadataType="Wsdl" ID="dd1d69dd-542c-414e-a75d-04431dab73eb" SourceId="1" SourceUrl="http://localhost:55501/SubmitOffer.xamlx?wsdl=wsdl0" />
+    <MetadataFile FileName="SubmitOffer2.xsd" MetadataType="Schema" ID="44b4b5fc-329d-4a52-a1b9-a8b7ac674e19" SourceId="1" SourceUrl="http://localhost:55501/SubmitOffer.xamlx?xsd=xsd2" />
+    <MetadataFile FileName="SubmitOffer1.xsd" MetadataType="Schema" ID="1c63294f-8e59-4950-b0fd-4f920a9493de" SourceId="1" SourceUrl="http://localhost:55501/SubmitOffer.xamlx?xsd=xsd1" />
+    <MetadataFile FileName="SubmitOffer.wsdl" MetadataType="Wsdl" ID="72e3e55e-1105-4ba1-bf7d-23db5599ec28" SourceId="1" SourceUrl="http://localhost:55501/SubmitOffer.xamlx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

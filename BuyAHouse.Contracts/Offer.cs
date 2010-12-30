@@ -6,6 +6,9 @@ namespace BuyAHouse.Contracts
     public class Offer
     {
         [DataMember(IsRequired = true)]
+        public int PropertyId { get; set; }
+
+        [DataMember(IsRequired = true)]
         public decimal Amount { get; set; }
 
         [DataMember(IsRequired = true)]

@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NotifyBuyer.cs" />
-    <Compile Include="NotifyOwner.cs" />
+    <Compile Include="NotifySeller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SaveOffer.cs" />
     <Compile Include="ServiceResources.Designer.cs">

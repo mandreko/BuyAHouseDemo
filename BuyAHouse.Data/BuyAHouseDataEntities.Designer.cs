@@ -16,6 +16,11 @@ using System.Xml.Serialization;
 using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
+#region EDM Relationship Metadata
+
+[assembly: EdmRelationshipAttribute("BuyAHouseDataEntities", "FK_PropertyOffer", "Property1", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(BuyAHouse.Data.Property), "Offer", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BuyAHouse.Data.Offer), true)]
+
+#endregion
 
 namespace BuyAHouse.Data
 {
@@ -80,6 +85,22 @@ namespace BuyAHouse.Data
             }
         }
         private ObjectSet<Offer> _Offers;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Property> Properties
+        {
+            get
+            {
+                if ((_Properties == null))
+                {
+                    _Properties = base.CreateObjectSet<Property>("Properties");
+                }
+                return _Properties;
+            }
+        }
+        private ObjectSet<Property> _Properties;
 
         #endregion
         #region AddTo Methods
@@ -90,6 +111,14 @@ namespace BuyAHouse.Data
         public void AddToOffers(Offer offer)
         {
             base.AddObject("Offers", offer);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Properties EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToProperties(Property property)
+        {
+            base.AddObject("Properties", property);
         }
 
         #endregion
@@ -118,8 +147,9 @@ namespace BuyAHouse.Data
         /// <param name="requestId">Initial value of the RequestId property.</param>
         /// <param name="emailAddress">Initial value of the EmailAddress property.</param>
         /// <param name="amount">Initial value of the Amount property.</param>
-        /// <param name="approved">Initial value of the Approved property.</param>
-        public static Offer CreateOffer(global::System.Int32 offerId, global::System.String buyerName, global::System.Guid requestId, global::System.String emailAddress, global::System.Decimal amount, global::System.Boolean approved)
+        /// <param name="propertyId">Initial value of the PropertyId property.</param>
+        /// <param name="accepted">Initial value of the Accepted property.</param>
+        public static Offer CreateOffer(global::System.Int32 offerId, global::System.String buyerName, global::System.Guid requestId, global::System.String emailAddress, global::System.Decimal amount, global::System.Int32 propertyId, global::System.Boolean accepted)
         {
             Offer offer = new Offer();
             offer.OfferId = offerId;
@@ -127,7 +157,8 @@ namespace BuyAHouse.Data
             offer.RequestId = requestId;
             offer.EmailAddress = emailAddress;
             offer.Amount = amount;
-            offer.Approved = approved;
+            offer.PropertyId = propertyId;
+            offer.Accepted = accepted;
             return offer;
         }
 
@@ -262,27 +293,198 @@ namespace BuyAHouse.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Boolean Approved
+        public global::System.Int32 PropertyId
         {
             get
             {
-                return _Approved;
+                return _PropertyId;
             }
             set
             {
-                OnApprovedChanging(value);
-                ReportPropertyChanging("Approved");
-                _Approved = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Approved");
-                OnApprovedChanged();
+                OnPropertyIdChanging(value);
+                ReportPropertyChanging("PropertyId");
+                _PropertyId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PropertyId");
+                OnPropertyIdChanged();
             }
         }
-        private global::System.Boolean _Approved;
-        partial void OnApprovedChanging(global::System.Boolean value);
-        partial void OnApprovedChanged();
+        private global::System.Int32 _PropertyId;
+        partial void OnPropertyIdChanging(global::System.Int32 value);
+        partial void OnPropertyIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Accepted
+        {
+            get
+            {
+                return _Accepted;
+            }
+            set
+            {
+                OnAcceptedChanging(value);
+                ReportPropertyChanging("Accepted");
+                _Accepted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Accepted");
+                OnAcceptedChanged();
+            }
+        }
+        private global::System.Boolean _Accepted;
+        partial void OnAcceptedChanging(global::System.Boolean value);
+        partial void OnAcceptedChanged();
 
         #endregion
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("BuyAHouseDataEntities", "FK_PropertyOffer", "Property1")]
+        public Property Property
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Property>("BuyAHouseDataEntities.FK_PropertyOffer", "Property1").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Property>("BuyAHouseDataEntities.FK_PropertyOffer", "Property1").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Property> PropertyReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Property>("BuyAHouseDataEntities.FK_PropertyOffer", "Property1");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Property>("BuyAHouseDataEntities.FK_PropertyOffer", "Property1", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="BuyAHouseDataEntities", Name="Property")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Property : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Property object.
+        /// </summary>
+        /// <param name="propertyId">Initial value of the PropertyId property.</param>
+        /// <param name="address">Initial value of the Address property.</param>
+        public static Property CreateProperty(global::System.Int32 propertyId, global::System.String address)
+        {
+            Property property = new Property();
+            property.PropertyId = propertyId;
+            property.Address = address;
+            return property;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PropertyId
+        {
+            get
+            {
+                return _PropertyId;
+            }
+            set
+            {
+                if (_PropertyId != value)
+                {
+                    OnPropertyIdChanging(value);
+                    ReportPropertyChanging("PropertyId");
+                    _PropertyId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PropertyId");
+                    OnPropertyIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _PropertyId;
+        partial void OnPropertyIdChanging(global::System.Int32 value);
+        partial void OnPropertyIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Address
+        {
+            get
+            {
+                return _Address;
+            }
+            set
+            {
+                OnAddressChanging(value);
+                ReportPropertyChanging("Address");
+                _Address = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Address");
+                OnAddressChanged();
+            }
+        }
+        private global::System.String _Address;
+        partial void OnAddressChanging(global::System.String value);
+        partial void OnAddressChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("BuyAHouseDataEntities", "FK_PropertyOffer", "Offer")]
+        public EntityCollection<Offer> Offers
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Offer>("BuyAHouseDataEntities.FK_PropertyOffer", "Offer");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Offer>("BuyAHouseDataEntities.FK_PropertyOffer", "Offer", value);
+                }
+            }
+        }
+
+        #endregion
     }
 
     #endregion

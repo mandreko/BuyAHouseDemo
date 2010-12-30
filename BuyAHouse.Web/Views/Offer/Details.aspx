@@ -26,9 +26,9 @@
 
     
 
-    <%: Html.RadioButton("accept", "Yes", true) %><label>Yes</label>
-    <%: Html.RadioButton("accept", "No", false)%><label>No</label>
-    <%--<%: Html.RadioButton("accept", "Counter", false)%><label>Counter</label>--%>
+    <%: Html.RadioButton("accept", "Accept", true) %><label>Yes</label>
+    <%: Html.RadioButton("accept", "Deny", false)%><label>No</label>
+    <%: Html.RadioButton("accept", "Counter", false)%><label>Counter</label>
 
     <input type="submit" value="Submit" />
     <% } %>

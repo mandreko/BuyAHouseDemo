@@ -6,7 +6,7 @@ using BuyAHouse.Contracts;
 
 namespace BuyAHouse.Activities
 {
-    public class NotifyOwner : CodeActivity
+    public class NotifySeller : CodeActivity
     {
         public InArgument<int> OfferId { get; set; }
         public InArgument<SubmitOfferRequest> OfferRequest { get; set; }

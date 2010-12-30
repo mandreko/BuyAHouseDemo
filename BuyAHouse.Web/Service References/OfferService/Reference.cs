@@ -15,63 +15,29 @@ namespace BuyAHouse.OfferService {
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://buyahouse.com/contracts/", ConfigurationName="OfferService.IService")]
     public interface IService {
         
-        // CODEGEN: Generating message contract since the operation SubmitOffer is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://buyahouse.com/contracts/IService/SubmitOffer", ReplyAction="http://buyahouse.com/contracts/IService/SubmitOfferResponse")]
-        BuyAHouse.OfferService.SubmitOfferResponse SubmitOffer(BuyAHouse.OfferService.SubmitOfferRequest request);
+        // CODEGEN: Generating message contract since the operation BuyerOffer is neither RPC nor document wrapped.
+        [System.ServiceModel.OperationContractAttribute(Action="http://buyahouse.com/contracts/IService/BuyerOffer", ReplyAction="http://buyahouse.com/contracts/IService/BuyerOfferResponse")]
+        BuyAHouse.OfferService.BuyerOfferResponse BuyerOffer(BuyAHouse.OfferService.BuyerOfferRequest request);
         
-        // CODEGEN: Generating message contract since the operation SellerAcceptanceCompleted is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://buyahouse.com/contracts/IService/SellerAcceptanceCompleted", ReplyAction="http://buyahouse.com/contracts/IService/SellerAcceptanceCompletedResponse")]
-        BuyAHouse.OfferService.SellerAcceptanceCompletedResponse SellerAcceptanceCompleted(BuyAHouse.OfferService.SellerAcceptanceCompletedRequest request);
+        // CODEGEN: Generating message contract since the operation SellerOffer is neither RPC nor document wrapped.
+        [System.ServiceModel.OperationContractAttribute(Action="http://buyahouse.com/contracts/IService/SellerOffer", ReplyAction="http://buyahouse.com/contracts/IService/SellerOfferResponse")]
+        BuyAHouse.OfferService.SellerOfferResponse SellerOffer(BuyAHouse.OfferService.SellerOfferRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class SubmitOfferRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="SubmitOfferRequest", Namespace="http://buyahouse.com/contracts", Order=0)]
-        public BuyAHouse.Contracts.SubmitOfferRequest SubmitOfferRequest1;
-        
-        public SubmitOfferRequest() {
-        }
-        
-        public SubmitOfferRequest(BuyAHouse.Contracts.SubmitOfferRequest SubmitOfferRequest1) {
-            this.SubmitOfferRequest1 = SubmitOfferRequest1;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class SubmitOfferResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="SubmitOfferResponse", Namespace="http://buyahouse.com/contracts", Order=0)]
-        public BuyAHouse.Contracts.SubmitOfferResponse SubmitOfferResponse1;
-        
-        public SubmitOfferResponse() {
-        }
-        
-        public SubmitOfferResponse(BuyAHouse.Contracts.SubmitOfferResponse SubmitOfferResponse1) {
-            this.SubmitOfferResponse1 = SubmitOfferResponse1;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class SellerAcceptanceCompletedRequest {
+    public partial class BuyerOfferRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://buyahouse.com/contracts", Order=0)]
-        public BuyAHouse.Contracts.SellerAcceptanceResult SellerAcceptanceResult;
+        public BuyAHouse.Contracts.SubmitOfferRequest SubmitOfferRequest;
         
-        public SellerAcceptanceCompletedRequest() {
+        public BuyerOfferRequest() {
         }
         
-        public SellerAcceptanceCompletedRequest(BuyAHouse.Contracts.SellerAcceptanceResult SellerAcceptanceResult) {
-            this.SellerAcceptanceResult = SellerAcceptanceResult;
+        public BuyerOfferRequest(BuyAHouse.Contracts.SubmitOfferRequest SubmitOfferRequest) {
+            this.SubmitOfferRequest = SubmitOfferRequest;
         }
     }
     
@@ -79,15 +45,49 @@ namespace BuyAHouse.OfferService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class SellerAcceptanceCompletedResponse {
+    public partial class BuyerOfferResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://buyahouse.com/contracts", Order=0)]
+        public BuyAHouse.Contracts.SubmitOfferResponse SubmitOfferResponse;
+        
+        public BuyerOfferResponse() {
+        }
+        
+        public BuyerOfferResponse(BuyAHouse.Contracts.SubmitOfferResponse SubmitOfferResponse) {
+            this.SubmitOfferResponse = SubmitOfferResponse;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class SellerOfferRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://buyahouse.com/contracts", Order=0)]
+        public BuyAHouse.Contracts.OfferAcceptanceResult OfferAcceptanceResult;
+        
+        public SellerOfferRequest() {
+        }
+        
+        public SellerOfferRequest(BuyAHouse.Contracts.OfferAcceptanceResult OfferAcceptanceResult) {
+            this.OfferAcceptanceResult = OfferAcceptanceResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class SellerOfferResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://schemas.microsoft.com/2003/10/Serialization/", Order=0)]
         public System.Nullable<bool> boolean;
         
-        public SellerAcceptanceCompletedResponse() {
+        public SellerOfferResponse() {
         }
         
-        public SellerAcceptanceCompletedResponse(System.Nullable<bool> boolean) {
+        public SellerOfferResponse(System.Nullable<bool> boolean) {
             this.boolean = boolean;
         }
     }
@@ -120,26 +120,26 @@ namespace BuyAHouse.OfferService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        BuyAHouse.OfferService.SubmitOfferResponse BuyAHouse.OfferService.IService.SubmitOffer(BuyAHouse.OfferService.SubmitOfferRequest request) {
-            return base.Channel.SubmitOffer(request);
+        BuyAHouse.OfferService.BuyerOfferResponse BuyAHouse.OfferService.IService.BuyerOffer(BuyAHouse.OfferService.BuyerOfferRequest request) {
+            return base.Channel.BuyerOffer(request);
         }
         
-        public BuyAHouse.Contracts.SubmitOfferResponse SubmitOffer(BuyAHouse.Contracts.SubmitOfferRequest SubmitOfferRequest1) {
-            BuyAHouse.OfferService.SubmitOfferRequest inValue = new BuyAHouse.OfferService.SubmitOfferRequest();
-            inValue.SubmitOfferRequest1 = SubmitOfferRequest1;
-            BuyAHouse.OfferService.SubmitOfferResponse retVal = ((BuyAHouse.OfferService.IService)(this)).SubmitOffer(inValue);
-            return retVal.SubmitOfferResponse1;
+        public BuyAHouse.Contracts.SubmitOfferResponse BuyerOffer(BuyAHouse.Contracts.SubmitOfferRequest SubmitOfferRequest) {
+            BuyAHouse.OfferService.BuyerOfferRequest inValue = new BuyAHouse.OfferService.BuyerOfferRequest();
+            inValue.SubmitOfferRequest = SubmitOfferRequest;
+            BuyAHouse.OfferService.BuyerOfferResponse retVal = ((BuyAHouse.OfferService.IService)(this)).BuyerOffer(inValue);
+            return retVal.SubmitOfferResponse;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        BuyAHouse.OfferService.SellerAcceptanceCompletedResponse BuyAHouse.OfferService.IService.SellerAcceptanceCompleted(BuyAHouse.OfferService.SellerAcceptanceCompletedRequest request) {
-            return base.Channel.SellerAcceptanceCompleted(request);
+        BuyAHouse.OfferService.SellerOfferResponse BuyAHouse.OfferService.IService.SellerOffer(BuyAHouse.OfferService.SellerOfferRequest request) {
+            return base.Channel.SellerOffer(request);
         }
         
-        public System.Nullable<bool> SellerAcceptanceCompleted(BuyAHouse.Contracts.SellerAcceptanceResult SellerAcceptanceResult) {
-            BuyAHouse.OfferService.SellerAcceptanceCompletedRequest inValue = new BuyAHouse.OfferService.SellerAcceptanceCompletedRequest();
-            inValue.SellerAcceptanceResult = SellerAcceptanceResult;
-            BuyAHouse.OfferService.SellerAcceptanceCompletedResponse retVal = ((BuyAHouse.OfferService.IService)(this)).SellerAcceptanceCompleted(inValue);
+        public System.Nullable<bool> SellerOffer(BuyAHouse.Contracts.OfferAcceptanceResult OfferAcceptanceResult) {
+            BuyAHouse.OfferService.SellerOfferRequest inValue = new BuyAHouse.OfferService.SellerOfferRequest();
+            inValue.OfferAcceptanceResult = OfferAcceptanceResult;
+            BuyAHouse.OfferService.SellerOfferResponse retVal = ((BuyAHouse.OfferService.IService)(this)).SellerOffer(inValue);
             return retVal.boolean;
         }
     }

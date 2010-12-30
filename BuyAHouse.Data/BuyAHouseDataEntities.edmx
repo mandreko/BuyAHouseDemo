@@ -7,6 +7,11 @@
     <Schema Namespace="BuyAHouseDataEntities.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="BuyAHouseDataEntitiesStoreContainer">
           <EntitySet Name="Offers" EntityType="BuyAHouseDataEntities.Store.Offers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Properties" EntityType="BuyAHouseDataEntities.Store.Properties" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_PropertyOffer" Association="BuyAHouseDataEntities.Store.FK_PropertyOffer">
+            <End Role="Properties" EntitySet="Properties" />
+            <End Role="Offers" EntitySet="Offers" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Offers">
           <Key>
@@ -17,14 +22,39 @@
           <Property Name="RequestId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="EmailAddress" Type="nvarchar" Nullable="false" MaxLength="255" />
           <Property Name="Amount" Type="decimal" Nullable="false" />
-          <Property Name="Approved" Type="bit" Nullable="false" />
+          <Property Name="Accepted" Type="bit" Nullable="false" />
+          <Property Name="PropertyId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Properties">
+          <Key>
+            <PropertyRef Name="PropertyId" />
+          </Key>
+          <Property Name="PropertyId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PropertyOffer">
+          <End Role="Properties" Type="BuyAHouseDataEntities.Store.Properties" Multiplicity="1" />
+          <End Role="Offers" Type="BuyAHouseDataEntities.Store.Offers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Properties">
+              <PropertyRef Name="PropertyId" />
+            </Principal>
+            <Dependent Role="Offers">
+              <PropertyRef Name="PropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="BuyAHouseDataEntities" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
         <EntityContainer Name="BuyAHouseDataEntitiesContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Offers" EntityType="BuyAHouseDataEntities.Offer" />
+          <EntitySet Name="Properties" EntityType="BuyAHouseDataEntities.Property" />
+          <AssociationSet Name="FK_PropertyOffer" Association="BuyAHouseDataEntities.FK_PropertyOffer">
+            <End EntitySet="Properties" Role="Property1" />
+            <End EntitySet="Offers" Role="Offer" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Offer">
           <Key>
@@ -35,8 +65,30 @@
           <Property Type="Guid" Name="RequestId" Nullable="false" />
           <Property Type="String" Name="EmailAddress" Nullable="false" MaxLength="255" />
           <Property Type="Decimal" Name="Amount" Nullable="false" />
-          <Property Type="Boolean" Name="Approved" Nullable="false" />
+          <NavigationProperty Name="Property" Relationship="BuyAHouseDataEntities.FK_PropertyOffer" FromRole="Offer" ToRole="Property1" />
+          <Property Type="Int32" Name="PropertyId" Nullable="false" />
+          <Property Type="Boolean" Name="Accepted" Nullable="false" />
         </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="PropertyId" />
+          </Key>
+          <Property Type="Int32" Name="PropertyId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Offers" Relationship="BuyAHouseDataEntities.FK_PropertyOffer" FromRole="Property1" ToRole="Offer" />
+        </EntityType>
+        <Association Name="FK_PropertyOffer">
+          <End Type="BuyAHouseDataEntities.Property" Multiplicity="1" Role="Property1" />
+          <End Type="BuyAHouseDataEntities.Offer" Multiplicity="*" Role="Offer" />
+          <ReferentialConstraint>
+            <Principal Role="Property1">
+              <PropertyRef Name="PropertyId" />
+            </Principal>
+            <Dependent Role="Offer">
+              <PropertyRef Name="PropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -46,15 +98,24 @@
     <EntitySetMapping Name="Offers">
       <EntityTypeMapping TypeName="IsTypeOf(BuyAHouseDataEntities.Offer)">
         <MappingFragment StoreEntitySet="Offers">
-          <ScalarProperty Name="OfferId" ColumnName="OfferId" />
+                <ScalarProperty Name="Accepted" ColumnName="Accepted" />
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="OfferId" ColumnName="OfferId" />
           <ScalarProperty Name="BuyerName" ColumnName="BuyerName" />
           <ScalarProperty Name="RequestId" ColumnName="RequestId" />
           <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
           <ScalarProperty Name="Amount" ColumnName="Amount" />
-          <ScalarProperty Name="Approved" ColumnName="Approved" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+          <EntitySetMapping Name="Properties">
+            <EntityTypeMapping TypeName="BuyAHouseDataEntities.Property">
+              <MappingFragment StoreEntitySet="Properties">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -75,7 +136,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="BuyAHouseDataEntities" >
-        <EntityTypeShape EntityType="BuyAHouseDataEntities.Offer" Width="1.5" PointX="4.875" PointY="1.5" Height="2.172587890625" />
+        <EntityTypeShape EntityType="BuyAHouseDataEntities.Offer" Width="1.5" PointX="4.875" PointY="1.5" Height="2.5571907552083326" />
+        <EntityTypeShape EntityType="BuyAHouseDataEntities.Property" Width="1.5" PointX="7.875" PointY="1.625" Height="1.59568359375" />
+        <AssociationConnector Association="BuyAHouseDataEntities.FK_PropertyOffer">
+          <ConnectorPoint PointX="7.875" PointY="2.422841796875" />
+          <ConnectorPoint PointX="6.375" PointY="2.422841796875" />
+        </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

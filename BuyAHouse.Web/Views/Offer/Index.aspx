@@ -7,6 +7,8 @@
 
 <h2>Make an offer</h2>
 
+This offer is for property# <%: Model.PropertyId %>, located at <%: Model.Address %>
+
 <% using (Html.BeginForm()) { %>
     <%: Html.ValidationSummary(false) %>
     <fieldset>
@@ -30,6 +32,9 @@
         <div class="editor-field">
             <%: Html.EditorFor(model => model.Amount) %>
         </div>
+
+        <%: Html.HiddenFor(model => model.PropertyId) %>
+        <%: Html.HiddenFor(model => model.Address) %>
 
         <p>
             <input type="submit" value="Make Offer" />

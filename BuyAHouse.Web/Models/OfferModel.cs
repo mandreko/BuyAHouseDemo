@@ -4,6 +4,12 @@ namespace BuyAHouse.Models
 {
     public class OfferModel
     {
+        [Required]
+        public int PropertyId { get; set; }
+
+        [Required]
+        public string Address { get; set; }
+
         [Display(Name="Offer Amount")]
         [Required]
         public decimal Amount { get; set; }

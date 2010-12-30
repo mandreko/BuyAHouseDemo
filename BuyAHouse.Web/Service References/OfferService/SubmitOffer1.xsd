@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://buyahouse.com/contracts" elementFormDefault="qualified" targetNamespace="http://buyahouse.com/contracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:55501/SubmitOffer.xamlx?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:55501/SubmitOffer.xamlx?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/BuyAHouse.Contracts" />
   <xs:complexType name="SubmitOfferRequest">
     <xs:sequence>
       <xs:element name="Offer" nillable="true" type="tns:Offer" />
+      <xs:element name="PropertyId" type="xs:int" />
       <xs:element name="RequestId" type="ser:guid" />
     </xs:sequence>
   </xs:complexType>
@@ -13,6 +15,7 @@
       <xs:element name="Amount" type="xs:decimal" />
       <xs:element name="BuyerName" nillable="true" type="xs:string" />
       <xs:element name="EmailAddress" nillable="true" type="xs:string" />
+      <xs:element name="PropertyId" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Offer" nillable="true" type="tns:Offer" />
@@ -20,15 +23,16 @@
     <xs:sequence>
       <xs:element name="BuyerName" nillable="true" type="xs:string" />
       <xs:element name="OfferId" type="xs:int" />
+      <xs:element name="PropertyId" type="xs:int" />
       <xs:element name="ResponseText" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="SubmitOfferResponse" nillable="true" type="tns:SubmitOfferResponse" />
-  <xs:complexType name="SellerAcceptanceResult">
+  <xs:complexType name="OfferAcceptanceResult">
     <xs:sequence>
-      <xs:element name="Accept" type="xs:boolean" />
       <xs:element name="OfferId" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/BuyAHouse.Contracts" name="Response" type="q1:OfferResponse" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="SellerAcceptanceResult" nillable="true" type="tns:SellerAcceptanceResult" />
+  <xs:element name="OfferAcceptanceResult" nillable="true" type="tns:OfferAcceptanceResult" />
 </xs:schema>
