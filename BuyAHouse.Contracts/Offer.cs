@@ -6,6 +6,9 @@ namespace BuyAHouse.Contracts
     public class Offer
     {
         [DataMember(IsRequired = true)]
+        public int? OfferId { get; set; }
+
+        [DataMember(IsRequired = true)]
         public int PropertyId { get; set; }
 
         [DataMember(IsRequired = true)]
@@ -16,5 +19,8 @@ namespace BuyAHouse.Contracts
 
         [DataMember(IsRequired = true)]
         public string EmailAddress { get; set; }
+
+        [DataMember(IsRequired = true)]
+        public OfferResponse Response { get; set; }
     }
 }

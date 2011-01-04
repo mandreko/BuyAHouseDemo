@@ -8,12 +8,12 @@ namespace BuyAHouse.Activities
 {
     public class NotifyBuyer : CodeActivity
     {
-        public InArgument<bool> Approve { get; set; }
+        public InArgument<OfferResponse> Response { get; set; }
         public InArgument<Offer> Offer { get; set; }
 
         protected override void Execute(CodeActivityContext context)
         {
-            bool approve = Approve.Get(context);
+            OfferResponse approve = Response.Get(context);
             Offer offer = Offer.Get(context);
             string baseUri = WebConfigurationManager.AppSettings["BaseURI"];
             string serverEmail = WebConfigurationManager.AppSettings["ServerEmail"];
@@ -38,21 +38,30 @@ namespace BuyAHouse.Activities
 
             string htmlMailText;
 
-            if (approve)
+            switch(approve)
             {
-                htmlMailText = string.Format(ServiceResources.GenericMailTemplate,
+                case OfferResponse.Accept:
+                    htmlMailText = string.Format(ServiceResources.GenericMailTemplate,
                                              ServiceResources.OfferAcceptedHeading,
                                              string.Format(ServiceResources.OfferAcceptedText, offer.BuyerName),
                                              baseUri);
-            }
-            else
-            {
-                htmlMailText = string.Format(ServiceResources.GenericMailTemplate,
+                    break;
+                case OfferResponse.Deny:
+                    htmlMailText = string.Format(ServiceResources.GenericMailTemplate,
                                              ServiceResources.OfferDeniedHeading,
                                              string.Format(ServiceResources.OfferDeniedText, offer.BuyerName),
                                              baseUri);
-            }
+                    break;
+                default:
+                    htmlMailText = string.Format(ServiceResources.GenericMailTemplate,
+                                             ServiceResources.OfferCounteredHeading,
+                                             string.Format(ServiceResources.OfferCounteredText, offer.BuyerName),
+                                             
+                                             baseUri);
+                    break;
 
+            }
+            
             SmtpClient smtpClient = new SmtpClient();
 
             MailMessage message = new MailMessage(

@@ -30,6 +30,9 @@
     <%: Html.RadioButton("accept", "Deny", false)%><label>No</label>
     <%: Html.RadioButton("accept", "Counter", false)%><label>Counter</label>
 
+    <div>If countering, what is your counter offer?</div>
+    <%: Html.TextBox("amount") %>
+
     <input type="submit" value="Submit" />
     <% } %>
 

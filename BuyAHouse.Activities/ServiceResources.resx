@@ -147,6 +147,12 @@
   <data name="OfferAcceptedText" xml:space="preserve">
     <value>Dear {0}, we wanted to let you know that your offer has been accepted.  We will call you shortly to start getting a mortgage settled.</value>
   </data>
+  <data name="OfferCounteredHeading" xml:space="preserve">
+    <value>You're still in it!</value>
+  </data>
+  <data name="OfferCounteredText" xml:space="preserve">
+    <value>Dear {0}, we wanted to let you know that your offer has been countered.  You may accept, deny, or continue with a counter if you so choose.</value>
+  </data>
   <data name="OfferDeniedHeading" xml:space="preserve">
     <value>We're sorry</value>
   </data>

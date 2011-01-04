@@ -5,7 +5,6 @@
   <xs:complexType name="SubmitOfferRequest">
     <xs:sequence>
       <xs:element name="Offer" nillable="true" type="tns:Offer" />
-      <xs:element name="PropertyId" type="xs:int" />
       <xs:element name="RequestId" type="ser:guid" />
     </xs:sequence>
   </xs:complexType>
@@ -15,24 +14,17 @@
       <xs:element name="Amount" type="xs:decimal" />
       <xs:element name="BuyerName" nillable="true" type="xs:string" />
       <xs:element name="EmailAddress" nillable="true" type="xs:string" />
+      <xs:element name="OfferId" nillable="true" type="xs:int" />
       <xs:element name="PropertyId" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/BuyAHouse.Contracts" name="Response" type="q1:OfferResponse" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Offer" nillable="true" type="tns:Offer" />
   <xs:complexType name="SubmitOfferResponse">
     <xs:sequence>
-      <xs:element name="BuyerName" nillable="true" type="xs:string" />
-      <xs:element name="OfferId" type="xs:int" />
-      <xs:element name="PropertyId" type="xs:int" />
+      <xs:element name="Offer" nillable="true" type="tns:Offer" />
       <xs:element name="ResponseText" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="SubmitOfferResponse" nillable="true" type="tns:SubmitOfferResponse" />
-  <xs:complexType name="OfferAcceptanceResult">
-    <xs:sequence>
-      <xs:element name="OfferId" type="xs:int" />
-      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/BuyAHouse.Contracts" name="Response" type="q1:OfferResponse" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="OfferAcceptanceResult" nillable="true" type="tns:OfferAcceptanceResult" />
 </xs:schema>

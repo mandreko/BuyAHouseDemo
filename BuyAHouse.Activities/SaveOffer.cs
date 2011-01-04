@@ -29,11 +29,17 @@ namespace BuyAHouse.Activities
 
                 ctx.Connection.Close();
 
-                var r =  new SubmitOfferResponse
+                var r = new SubmitOfferResponse
                            {
-                               PropertyId = request.Offer.PropertyId,
-                               BuyerName = request.Offer.BuyerName,
-                               OfferId = offer.OfferId,
+                               Offer = new Offer
+                                           {
+                                               Amount = offer.Amount,
+                                               BuyerName = offer.BuyerName,
+                                               EmailAddress = offer.EmailAddress,
+                                               OfferId = offer.OfferId,
+                                               PropertyId = offer.PropertyId,
+                                               Response = OfferResponse.Counter, // for initial offer
+                                           },
                                ResponseText = string.Format(ServiceResources.OfferProcessing, request.Offer.BuyerName, offer.OfferId),
                            };
 

@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Offer.cs" />
     <Compile Include="OfferResponse.cs" />
-    <Compile Include="OfferAcceptanceResult.cs" />
     <Compile Include="SubmitOfferResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubmitOfferRequest.cs" />

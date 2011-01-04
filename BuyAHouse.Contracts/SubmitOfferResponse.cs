@@ -6,13 +6,7 @@ namespace BuyAHouse.Contracts
     public class SubmitOfferResponse
     {
         [DataMember(IsRequired = true)]
-        public int PropertyId { get; set; }
-
-        [DataMember(IsRequired = true)]
-        public int OfferId { get; set; }
-
-        [DataMember(IsRequired = true)]
-        public string BuyerName { get; set; }
+        public Offer Offer { get; set; }
 
         [DataMember(IsRequired = true)]
         public string ResponseText { get; set; }

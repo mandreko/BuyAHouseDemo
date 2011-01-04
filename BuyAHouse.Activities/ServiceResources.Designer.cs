@@ -105,6 +105,24 @@ namespace BuyAHouse.Activities {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You&apos;re still in it!.
+        /// </summary>
+        public static string OfferCounteredHeading {
+            get {
+                return ResourceManager.GetString("OfferCounteredHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dear {0}, we wanted to let you know that your offer has been countered.  You may accept, deny, or continue with a counter if you so choose..
+        /// </summary>
+        public static string OfferCounteredText {
+            get {
+                return ResourceManager.GetString("OfferCounteredText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We&apos;re sorry.
         /// </summary>
         public static string OfferDeniedHeading {

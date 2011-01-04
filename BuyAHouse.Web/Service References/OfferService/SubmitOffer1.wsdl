@@ -14,10 +14,10 @@
     <wsdl:part xmlns:q2="http://buyahouse.com/contracts" name="SubmitOfferResponse" element="q2:SubmitOfferResponse" />
   </wsdl:message>
   <wsdl:message name="IService_SellerOffer_InputMessage">
-    <wsdl:part xmlns:q3="http://buyahouse.com/contracts" name="OfferAcceptanceResult" element="q3:OfferAcceptanceResult" />
+    <wsdl:part xmlns:q3="http://buyahouse.com/contracts" name="SubmitOfferRequest" element="q3:SubmitOfferRequest" />
   </wsdl:message>
   <wsdl:message name="IService_SellerOffer_OutputMessage">
-    <wsdl:part xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/" name="boolean" element="q4:boolean" />
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/BuyAHouse.Contracts" name="OfferResponse" element="q4:OfferResponse" />
   </wsdl:message>
   <wsdl:portType name="IService">
     <wsdl:operation name="BuyerOffer">

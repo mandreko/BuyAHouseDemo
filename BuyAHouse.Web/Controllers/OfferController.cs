@@ -42,11 +42,9 @@ namespace BuyAHouse.Controllers
                 return View("Error");
             }
 
-
             var proxy = new OfferService.ServiceClient();
             var response = proxy.BuyerOffer(new SubmitOfferRequest
                                                  {
-                                                     PropertyId = model.PropertyId,
                                                      RequestId = Guid.NewGuid(),
                                                      Offer = new Offer
                                                                  {
@@ -54,13 +52,8 @@ namespace BuyAHouse.Controllers
                                                                      Amount = model.Amount,
                                                                      BuyerName = model.BuyerName,
                                                                      EmailAddress = model.EmailAddress,
+                                                                     Response = OfferResponse.Counter,
                                                                  },
-                                                     Result = new OfferAcceptanceResult
-                                                                  {
-                                                                      OfferId = 0,
-                                                                      Response = BuyAHouse.Contracts.
-                                                                  }
-
                                                  });
 
 
@@ -76,6 +69,7 @@ namespace BuyAHouse.Controllers
 
             OfferModel model = new OfferModel
                                    {
+                                       PropertyId = offer.PropertyId,
                                        Amount = offer.Amount,
                                        BuyerName = offer.BuyerName,
                                        EmailAddress = offer.EmailAddress,
@@ -85,17 +79,32 @@ namespace BuyAHouse.Controllers
         }
 
         [HttpPost]
-        public ActionResult Details(int id, string response)
+        public ActionResult Details(int id, string accept, string amount)
         {
+            if (string.IsNullOrEmpty(accept))
+                throw new ArgumentNullException("accept", @"accept can not be null");
+
+            decimal amountDecimal;
+            if (!decimal.TryParse(amount, out amountDecimal))
+                throw new ArgumentOutOfRangeException("amount");
+
+            Data.Offer offer = _db.Offers.Single(o => o.OfferId == id);
+
             var proxy = new OfferService.ServiceClient();
 
             try
             {
-                var result = new OfferAcceptanceResult
-                                     {
-                                         OfferId = id,
-                                         Response = (OfferResponse)Enum.Parse(typeof(OfferResponse), response),
-                                     };
+                var result = new SubmitOfferRequest
+                                 {
+                                     Offer = new Offer
+                                                 {
+                                                     Amount = amountDecimal,
+                                                     BuyerName = offer.BuyerName,
+                                                     EmailAddress = offer.EmailAddress,
+                                                     PropertyId = offer.PropertyId,
+                                                     Response = (OfferResponse) Enum.Parse(typeof (OfferResponse), accept),
+                                                 }
+                                 };
 
                 proxy.SellerOffer(result);
 
